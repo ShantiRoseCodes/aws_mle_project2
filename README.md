@@ -39,21 +39,9 @@ Upon deployment, an endpoint was created to generate predictions. This would lat
 
 ## Lambda Functions
 
-The first lambda function retrieves the data from the S3 bucket and encodes the image data that will later on be used by the second function to make an inference of an image. 
-
-As the second function required the sagemaker package with dependencies, it had to be created locally. The package and Lambda Function were then zipped and uploaded into an S3 bucket.
-
-![The First Lambda Function](SerializeImageFunction.png "The first function retrieves and encodes the image data.")
-
-![The Second Lambda Function](SerialImageDataFunction2.png "The second function uses the data returned to encode the image data.")
+The first lambda function retrieves the data from the S3 bucket and encodes the image data that will later on be used by the second function to make an inference of an image.
 
 The third lambda function defines the threshold of the prediction and raises an error if the threshold is not met.
-
-![The Third Lambda Function](SerializeImageDataFunction3.png "The third function raises an error if the prediction does not meet the threshold.")
-
-As each function was created, they were tested using a dictionary of input values taken from the test folder.
-
-![The Test Result of the first function.](SerializeImageDataFunction3.png "The second function uses the data returned to encode the image data.")
 
 ## Step Functions
 
@@ -71,4 +59,4 @@ Data from the model monitor were then retrieved and used to create a plot to sho
 
 ## Reflection
 
-The model seemed to perform very well as the plot showed that it was always within threshold. It was very easy to assume that the reason for this was insufficient data. However, in the process of putting this report together, it can be seen that there was an error in line 10 of my third lambda function which may have been responsible for the model's perfect performance.
+The model seemed to perform very well as the plot showed that it was always within threshold, however this is perhaps due to the lack of data. Further testing will be needed to show the model's true performance.
